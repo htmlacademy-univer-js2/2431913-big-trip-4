@@ -1,7 +1,7 @@
 # Проект «Большое путешествие»
 
 * Студент: [Агамалы Агамалиев](https://up.htmlacademy.ru/univer-js2/4/user/2431913).
-* Наставник: `Владимир Шишлянников`(https://htmlacademy.ru/profile/id1082173).
+* Наставник: [Владимир Шишлянников](https://htmlacademy.ru/profile/id1082173).
 
 ---
 
