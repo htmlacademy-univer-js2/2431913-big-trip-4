@@ -29,12 +29,9 @@
     "not ie <= 11",
     "not op_mini all",
     "not < 0.25%"
-<<<<<<< HEAD
+
   ],
   "dependencies": {
     "dayjs": "1.11.9"
   }
-=======
-  ]
->>>>>>> 1788197a212c435bd4ae30b15ebb9d6dfa8a1597
 }
