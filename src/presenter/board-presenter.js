@@ -1,10 +1,10 @@
 import {
   render
 } from '../render.js';
-import EventListView from '../view/events-list-view.js';
-import EventItemView from '../view/event-item-view.js';
-import PointEditorView from '../view/point-editor-view.js';
-import SortingView from '../view/sorting-view.js';
+import EventListView from '../view/events-list.js';
+import EventItemView from '../view/item.js';
+import PointEditorView from '../view/editor-view.js';
+import SortingView from '../view/sort.js';
 
 export default class PointsPresenter {
   listComponent = new EventListView();
