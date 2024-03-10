@@ -1,15 +1,11 @@
 import {
-  createElement
-} from '../render.js';
-
-import {
-  DATE_FORMATS,
+  DateFormat,
 } from '../const.js';
-
 import {
-  humanizeDate,
-  calculateDuration
+  calculateDuration,
+  formatDate
 } from '../utils.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 const createOffersListMarkup = (pointOffers, typeOffers) => pointOffers
   .map((pointOfferId) => {
@@ -25,7 +21,7 @@ const createOffersListMarkup = (pointOffers, typeOffers) => pointOffers
   .join('');
 
 
-function createEventItemTemplate(eventPoint, typeOffers, destination) {
+function createPointTemplate(eventPoint, typeOffers, destination) {
   const {
     type,
     basePrice,
@@ -38,16 +34,16 @@ function createEventItemTemplate(eventPoint, typeOffers, destination) {
   return (
     `<li class="trip-events__item">
       <div class="event">
-        <time class="event__date" datetime="${dateFrom}">${humanizeDate(dateFrom, DATE_FORMATS.shortDate)}</time>
+        <time class="event__date" datetime="${dateFrom}">${formatDate(dateFrom, DateFormat.SHORT)}</time>
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${type.toLowerCase()}.png" alt="Event type icon">
         </div>
         <h3 class="event__title">${type} ${destination.name}</h3>
         <div class="event__schedule">
           <p class="event__time">
-            <time class="event__start-time" datetime="${dateFrom}">${humanizeDate(dateFrom, DATE_FORMATS.time)}</time>
+            <time class="event__start-time" datetime="${dateFrom}">${formatDate(dateFrom, DateFormat.TIME)}</time>
             &mdash;
-            <time class="event__end-time" datetime="${dateTo}">${humanizeDate(dateTo, DATE_FORMATS.time)}</time>
+            <time class="event__end-time" datetime="${dateTo}">${formatDate(dateFrom, DateFormat.TIME)}</time>
           </p>
           <p class="event__duration">${duration}</p>
         </div>
@@ -72,30 +68,33 @@ function createEventItemTemplate(eventPoint, typeOffers, destination) {
   );
 }
 
-export default class EventItemView {
+export default class PointView extends AbstractView {
+  #eventPoint = null;
+  #destination = null;
+  #offers = null;
+  #onEditClick = null;
+
   constructor({
-    eventPoint,
+    point,
     offers,
-    destination
+    destination,
+    onEditClick,
   }) {
-    this.eventPoint = eventPoint;
-    this.offers = offers;
-    this.destination = destination;
+    super();
+    this.#eventPoint = point;
+    this.#offers = offers;
+    this.#destination = destination;
+    this.#onEditClick = onEditClick;
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
-  getTemplate() {
-    return createEventItemTemplate(this.eventPoint, this.offers, this.destination);
+  get template() {
+    return createPointTemplate(this.#eventPoint, this.#offers, this.#destination);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
 
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#onEditClick();
+  };
 }
