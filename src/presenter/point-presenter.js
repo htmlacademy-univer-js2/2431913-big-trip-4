@@ -2,7 +2,6 @@ import { remove, render, replace } from '../framework/render.js';
 import PointView from '../view/point-view.js';
 import PointEditorView from '../view/point-editor-view.js';
 import { PointMode } from '../const.js';
-
 export default class PointPresenter {
   #container = null;
   #pointComponent = null;
