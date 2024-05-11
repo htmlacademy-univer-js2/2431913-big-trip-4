@@ -147,6 +147,7 @@ function createPointEditorTemplate({ point, pointDestination, pointOffers }) {
     </li>`;
 }
 
+
 export default class PointEditorView extends AbstractStatefulView {
   #point = null;
   #destinations = null;
