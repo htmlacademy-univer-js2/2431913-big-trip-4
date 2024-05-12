@@ -6,7 +6,7 @@ import EventsListView from '../view/events-list-view.js';
 import EventsListEmptyView from '../view/events-list-empty-view.js';
 import { SORTING_COLUMNS, SortType, UpdateType } from '../const.js';
 import PointPresenter from './point-presenter.js';
-import { deleteItem, sortByType, updateItem } from '../utils.js';
+import { sortByType } from '../utils.js';
 import SortingView from '../view/sorting-view.js';
 
 export default class RoutePresenter {
