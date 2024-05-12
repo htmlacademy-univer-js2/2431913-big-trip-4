@@ -9,6 +9,7 @@ import PointPresenter from './point-presenter.js';
 import { sortByType } from '../utils.js';
 import SortingView from '../view/sorting-view.js';
 
+
 export default class RoutePresenter {
   #container = null;
   #pointsModel = null;
