@@ -8,6 +8,7 @@ import {
 export default class MainApiService extends ApiService {
   _defaultHeaders = new Headers({'Content-Type': 'application/json'});
 
+
   constructor() {
     super(API_HOST, AUTH_TOKEN);
   }
